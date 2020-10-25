@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <div class="pagina">
+        <div class="pokedex">
+            <div class="tapa-i">
+                <div class="pantalla-pokemon">
+                    <div>
+                        <span class="error404" id="mensaje-error"></span>
+                        <img id="imagen-pokemon"
+                            src="./assets/img/logo.png"
+                            alt="">
+                    </div>
+                </div>
+                
+                <div id="botonera" class="botonera">
+                    
+                </div>
+            </div>
+            <div class="tapa-d">
+                <div class="pantalla-detalles">
+                    <ul class="lista-detalles">
+                        <h4>Detalles del pokemon</h4>
+                        <li><span>nro. pokedex</span>: <span id="numero-pokemon">-</span></li>
+                        <li><span>nombre</span>: <span id="nombre">-</span></li>
+                        <li><span>tipo</span>: <span id="tipo">-</span></li>
+                    </ul>
+                </div>
+                <input id="input" class="buscador" placeholder="Buscar pokemon (id o nombre)" type="text">
+                <div class="botones-equipo">
+
+                </div>
+                <div class="equipo" id="pantalla-equipo">
+
+                </div>
+                <button id="remover-quipo" class="quitar-equipo" onclick="removerEquipo()">Remover equipo</button>
+            </div>
+        </div>
+    </div>
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>
