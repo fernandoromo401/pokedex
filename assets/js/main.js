@@ -6,6 +6,8 @@ const buscar = () => {
     let html = seleccionarHTML()
     const pokemon = html.valorInput.value.toLowerCase()
     if (pokemon != undefined || pokemon != null) {
+        html.imagen.setAttribute("src", "")
+        html.mensajePantalla.innerHTML = "CARGANDO..."
         fetch(pokeapi_url + pokemon)
             .then(respuesta => respuesta.json())
             .then(data => {
@@ -13,7 +15,7 @@ const buscar = () => {
                 agregarBoton(data, html.agregarPokemon)
             })
             .catch(() => {
-                mostrarError(html, "NO SE ENCONTRO POKEMON")
+                mostrarMensaje(html, "NO SE ENCONTRO POKEMON")
             })
     }
 }
@@ -25,7 +27,7 @@ const seleccionarHTML = () => {
         tipoPokemon: document.getElementById("tipo"),
         idPokemon: document.getElementById("numero-pokemon"),
         nombrePokemon: document.getElementById("nombre"),
-        mensajeError: document.getElementById("mensaje-error"),
+        mensajePantalla: document.getElementById("mensaje-pantalla"),
         imagen: document.getElementById("imagen-pokemon"),
         agregarPokemon: document.getElementById("botonera")
     }
@@ -38,20 +40,20 @@ const mostrarPokemon = (data, html) => {
     html.idPokemon.innerText = data.id
     html.nombrePokemon.innerText = (data.name).toUpperCase()
     html.imagen.setAttribute("src", data.sprites.front_default)
-    html.mensajeError.innerText = ""
+    html.mensajePantalla.innerText = ""
 }
 
 // Muestra los mensajes de error
-const mostrarError = (html, error) => {
+const mostrarMensaje = (html, msj) => {
     html.valorInput.value = ""
     html.tipoPokemon.innerText = "-"
     html.idPokemon.innerText = "-"
     html.nombrePokemon.innerText = "-"
     html.imagen.setAttribute("src", "")
-    html.mensajeError.innerText = error.toUpperCase()
+    html.mensajePantalla.innerText = msj.toUpperCase()
     html.agregarPokemon ? html.agregarPokemon.style.display = "none" : false
     setTimeout(() => {
-        html.mensajeError.innerText = ""
+        html.mensajePantalla.innerText = ""
         html.imagen.setAttribute("src", `./assets/img/logo.png`)
     }, 3000);
 }
@@ -93,7 +95,7 @@ const agregarEquipo = pokemon => {
     }
     else {
         let html = seleccionarHTML()
-        mostrarError(html, "ya esta el equipo completo")
+        mostrarMensaje(html, "ya esta el equipo completo")
     }
 
 }
